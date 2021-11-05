@@ -14,10 +14,10 @@ public class BuildingServiceImpl implements BuildingService {
 	private BuildingRepository buildingRepository = new BuildingRepositoryImpl();
 
 	@Override
-	public List<BuildingModel> getBuilding(BuildingModel model) {
-		List<BuildingModel> result = new ArrayList<>();
-
-		List<BuildingEntity> buildingEntities = buildingRepository.getBuilding(model.getName(), model.getStreet());
+	public List<BuildingModel> getBuilding() {
+		List<BuildingModel> result = new ArrayList<>(); // new để hứng kết quả entity
+		List<BuildingEntity> buildingEntities = buildingRepository.getBuilding();
+		// convert từ entity -> model
 		for (BuildingEntity item : buildingEntities) {
 			BuildingModel buildingModel = new BuildingModel();
 			buildingModel.setId(item.getId());
@@ -26,6 +26,21 @@ public class BuildingServiceImpl implements BuildingService {
 			buildingModel.setBuildingType(item.getBuldingType());
 			result.add(buildingModel);
 
+		}
+		return result;
+	}
+
+	@Override
+	public List<BuildingModel> buildingSearch(BuildingModel model) {
+		List<BuildingModel> result = new ArrayList<>();
+		List<BuildingEntity> buildingEntities = buildingRepository.buildingSearch(model.getName(), model.getStreet());
+		for (BuildingEntity item : buildingEntities) {
+			BuildingModel buildingModel = new BuildingModel();
+			buildingModel.setId(item.getId());
+			buildingModel.setName(item.getName());
+			buildingModel.setStreet(item.getStreet());
+			buildingModel.setBuildingType(item.getBuldingType());
+			result.add(buildingModel);
 		}
 		return result;
 	}

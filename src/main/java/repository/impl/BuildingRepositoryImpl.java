@@ -11,6 +11,7 @@ import java.util.List;
 import com.mysql.cj.util.StringUtils;
 
 import Entity.BuildingEntity;
+import constant.SystemConstant;
 import repository.BuildingRepository;
 
 public class BuildingRepositoryImpl implements BuildingRepository {
@@ -20,7 +21,7 @@ public class BuildingRepositoryImpl implements BuildingRepository {
 	private final String PASS = "123456";
 
 	@Override
-	public List<BuildingEntity> getBuilding(String name, String street) {
+	public List<BuildingEntity> getBuilding() {
 //		int id
 		Connection conn = null;
 		// Statement stmt = null;
@@ -34,13 +35,59 @@ public class BuildingRepositoryImpl implements BuildingRepository {
 				System.out.println("Connection database");
 				// stmt = coon.createStatement();
 				StringBuilder sql = new StringBuilder("select * from building where 1 = 1");
-				if (!StringUtils.isNullOrEmpty(name)) {
+				stmt = conn.prepareStatement(sql.toString());
+				rs = stmt.executeQuery();
+				while (rs.next()) {
+					BuildingEntity buildingBean = new BuildingEntity();
+					buildingBean.setId(rs.getInt("id"));
+					buildingBean.setName(rs.getString("name"));
+					buildingBean.setStreet(rs.getString("street"));
+					buildingBean.setBuldingType(rs.getString("buildingType"));
+					buildings.add(buildingBean);
+				}
+				return buildings;
+			}
+		} catch (ClassNotFoundException | SQLException | ArithmeticException e) {
+			e.printStackTrace();
+//			return new ArrayList<>();
+		} finally {
+			try {
+				if (conn != null) {
+					conn.close();
+				}
+				if (stmt != null) {
+					stmt.close();
+				}
+				if (rs != null) {
+					rs.close();
+				}
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return new ArrayList<>();
+	}
+	@Override
+	public List<BuildingEntity> buildingSearch(String name, String street) {
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		List<BuildingEntity> buildings = new ArrayList<>();
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			conn = DriverManager.getConnection(DB_URL, USER, PASS);
+			if (conn != null) {
+				System.out.println("Connection database");
+				StringBuilder sql = new StringBuilder("select buildingType from building");
+				if (SystemConstant.TANGTRET != null) {
 					sql.append(" and name = ?");
 				}
 
-				if (!StringUtils.isNullOrEmpty(street)) {
+				if (SystemConstant.TANGTRET_NGUYENCAN_NOITHAT_CODE != null) {
 					sql.append(" and street = ?");
 				}
+						
 				stmt = conn.prepareStatement(sql.toString());
 				stmt.setString(1, name);
 				stmt.setString(2, street);
@@ -77,12 +124,45 @@ public class BuildingRepositoryImpl implements BuildingRepository {
 		return new ArrayList<>();
 	}
 
+
 	@Override
 	public List<BuildingEntity> getBuildingByStaff() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 //	@Override
 //	public void save(BuildingEntity entity) {
 //		// TODO Auto-generated method stub
