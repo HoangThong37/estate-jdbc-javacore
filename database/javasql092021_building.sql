@@ -28,7 +28,7 @@ CREATE TABLE `building` (
   `street` varchar(45) COLLATE utf8_bin DEFAULT NULL,
   `buildingType` text COLLATE utf8_bin,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -37,7 +37,7 @@ CREATE TABLE `building` (
 
 LOCK TABLES `building` WRITE;
 /*!40000 ALTER TABLE `building` DISABLE KEYS */;
-INSERT INTO `building` VALUES (1,'test 1','abc 1','tang-tret'),(2,'test 2','abc 2','tang-tret, nguyen-can, noi-that');
+INSERT INTO `building` VALUES (1,'test 1','abc 1','tang-tret'),(2,'test 2','abc 2','tang-tret, nguyen-can, noi-that'),(3,'test 3','abc 3','tang-tret,nguyen-can'),(4,'test 4','abc 4','nguyen-can, noi-that'),(5,'test 5 ','abc 5','tang-tret,noi-that');
 /*!40000 ALTER TABLE `building` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -50,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-11-02 10:51:05
+-- Dump completed on 2021-11-06 14:46:53
