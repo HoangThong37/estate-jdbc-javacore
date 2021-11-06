@@ -16,9 +16,7 @@ public class BuildingController {
 		// covert từ tk bean -> model
 		return buildingService.buildingSearch(model);
 	}
-   
-//	public void save(BuildingModel model) {
-//		buildingService.save(model);
-//	}
+	
+  
 
 }

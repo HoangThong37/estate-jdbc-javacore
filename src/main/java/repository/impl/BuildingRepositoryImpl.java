@@ -22,7 +22,6 @@ public class BuildingRepositoryImpl implements BuildingRepository {
 
 	@Override
 	public List<BuildingEntity> getBuilding() {
-//		int id
 		Connection conn = null;
 		// Statement stmt = null;
 		PreparedStatement stmt = null;
@@ -71,8 +70,8 @@ public class BuildingRepositoryImpl implements BuildingRepository {
 	@Override
 	public List<BuildingEntity> buildingSearch(String name, String street) {
 		Connection conn = null;
-		PreparedStatement stmt = null;
-		ResultSet rs = null;
+		PreparedStatement stmt = null; //xử lý
+		ResultSet rs = null; //kết quả
 		List<BuildingEntity> buildings = new ArrayList<>();
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -80,23 +79,23 @@ public class BuildingRepositoryImpl implements BuildingRepository {
 			if (conn != null) {
 				System.out.println("Connection database");
 				StringBuilder sql = new StringBuilder("select buildingType from building");
-				if (SystemConstant.TANGTRET != null) {
+				if (StringUtils.isNullOrEmpty(name)) {
 					sql.append(" and name = ?");
 				}
 
-				if (SystemConstant.TANGTRET_NGUYENCAN_NOITHAT_CODE != null) {
+				if (StringUtils.isNullOrEmpty(street)) {
 					sql.append(" and street = ?");
 				}
-						
 				stmt = conn.prepareStatement(sql.toString());
 				stmt.setString(1, name);
 				stmt.setString(2, street);
 				rs = stmt.executeQuery();
-				while (rs.next()) {
+				
+				while (rs.next()) { // hứng kết quả
 					BuildingEntity buildingBean = new BuildingEntity();
-					buildingBean.setId(rs.getInt("id"));
+					buildingBean.setId(rs.getInt("id")); 
 					buildingBean.setName(rs.getString("name"));
-					buildingBean.setStreet(rs.getString("street"));
+					buildingBean.setStreet(rs.getString("street")); //set street cho building
 					buildingBean.setBuldingType(rs.getString("buildingType"));
 					buildings.add(buildingBean);
 				}
@@ -130,6 +129,7 @@ public class BuildingRepositoryImpl implements BuildingRepository {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 
 
 	

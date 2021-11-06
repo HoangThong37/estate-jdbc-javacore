@@ -7,7 +7,4 @@ import Model.BuildingModel;
 public interface BuildingService {
 	List<BuildingModel> getBuilding();
 	List<BuildingModel> buildingSearch(BuildingModel model);
-	
-//	void save(BuildingModel model);
-
 }

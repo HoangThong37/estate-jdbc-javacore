@@ -6,7 +6,7 @@ import java.util.Scanner;
 import Controller.BuildingController;
 import Model.BuildingModel;
 
-public class BuildingListView {
+public class BuildingListViewAll {
 	public static void main(String[] args) {
 		BuildingController buildingController = new BuildingController();
 		List<BuildingModel> results = buildingController.getBuilding();
