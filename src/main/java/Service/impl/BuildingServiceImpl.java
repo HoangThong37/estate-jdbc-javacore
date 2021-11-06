@@ -29,7 +29,7 @@ public class BuildingServiceImpl implements BuildingService {
 			buildingModel.setId(item.getId());
 			buildingModel.setName(item.getName());
 			buildingModel.setStreet(item.getStreet());
-			buildingModel.setBuildingType(item.getBuldingType());
+			buildingModel.setBuildingType(convertBuildingType(item.getBuldingType()));
 			result.add(buildingModel);
 
 		}
@@ -39,7 +39,7 @@ public class BuildingServiceImpl implements BuildingService {
 	@Override
 	public List<BuildingModel> buildingSearch(BuildingModel model) {
 		List<BuildingModel> result = new ArrayList<>();
-		List<BuildingEntity> buildingEntities = buildingRepository.buildingSearch(model.getName(), model.getStreet());
+		List<BuildingEntity> buildingEntities = buildingRepository.buildingSearch(model);
 		
 		for (BuildingEntity item : buildingEntities) {
 			BuildingModel buildingModel = new BuildingModel();

@@ -11,6 +11,7 @@ import java.util.List;
 import com.mysql.cj.util.StringUtils;
 
 import Entity.BuildingEntity;
+import Model.BuildingModel;
 import constant.SystemConstant;
 import repository.BuildingRepository;
 
@@ -68,29 +69,28 @@ public class BuildingRepositoryImpl implements BuildingRepository {
 		return new ArrayList<>();
 	}
 	@Override
-	public List<BuildingEntity> buildingSearch(String name, String street) {
+	public List<BuildingEntity> buildingSearch(BuildingModel model) {
 		Connection conn = null;
 		PreparedStatement stmt = null; //xử lý
 		ResultSet rs = null; //kết quả
 		List<BuildingEntity> buildings = new ArrayList<>();
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
+		//	Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection(DB_URL, USER, PASS);
 			if (conn != null) {
 				System.out.println("Connection database");
-				StringBuilder sql = new StringBuilder("select buildingType from building");
-				if (StringUtils.isNullOrEmpty(name)) {
+				StringBuilder sql = new StringBuilder("select * from building where 1 = 1");
+				if (!StringUtils.isNullOrEmpty(model.getName())) {
 					sql.append(" and name = ?");
 				}
 
-				if (StringUtils.isNullOrEmpty(street)) {
+				if (!StringUtils.isNullOrEmpty(model.getStreet())) {
 					sql.append(" and street = ?");
 				}
 				stmt = conn.prepareStatement(sql.toString());
-				stmt.setString(1, name);
-				stmt.setString(2, street);
+				stmt.setString(1, model.getName());
+				stmt.setString(2, model.getStreet());
 				rs = stmt.executeQuery();
-				
 				while (rs.next()) { // hứng kết quả
 					BuildingEntity buildingBean = new BuildingEntity();
 					buildingBean.setId(rs.getInt("id")); 
@@ -101,7 +101,7 @@ public class BuildingRepositoryImpl implements BuildingRepository {
 				}
 				return buildings;
 			}
-		} catch (ClassNotFoundException | SQLException | ArithmeticException e) {
+		} catch (  SQLException | ArithmeticException e) {
 			e.printStackTrace();
 //			return new ArrayList<>();
 		} finally {
