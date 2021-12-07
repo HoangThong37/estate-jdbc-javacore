@@ -9,8 +9,7 @@ import com.laptrinhjava.entity.BuildingEntity;
 
 
 public interface BuildingService {
-	 // search all hết 
-	List<BuildingResponse> buildingSearchAll(BuildingRequestDto dto); 
 	
 	List<BuildingResponse> buildingSearch(BuildingRequestDto dto);
+	
 }

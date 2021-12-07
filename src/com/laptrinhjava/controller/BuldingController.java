@@ -9,11 +9,11 @@ import com.laptrinhjava.service.impl.BuildingServiceImpl;
 
 public class BuldingController {
 	private BuildingService buildingService = new BuildingServiceImpl();
-	public List<BuildingResponse> getBuilding(BuildingRequestDto dto) {
-		// covert từ tk 
-		return buildingService .buildingSearchAll(dto);
-	}
-	
+//	public List<BuildingResponse> getBuilding(BuildingRequestDto dto) {
+//		// covert từ tk 
+//		return buildingService .buildingSearchAll(dto);
+//	}
+//	
 	public List<BuildingResponse> getBuildingSearch(BuildingRequestDto dto) {
 		// covert từ tk 
 		return buildingService .buildingSearch(dto);

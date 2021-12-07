@@ -8,7 +8,7 @@ import com.laptrinhjava.dto.request.BuildingRequestDto;
 import com.laptrinhjava.dto.response.BuildingResponse;
 
 public class BuildingSearch {
-	public static void main(String[] args) {
+public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 		System.out.print("Enter building name : ");
 		String buildingName = scanner.nextLine();

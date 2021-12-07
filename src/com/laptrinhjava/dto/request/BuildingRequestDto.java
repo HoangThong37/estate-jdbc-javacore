@@ -1,20 +1,20 @@
 package com.laptrinhjava.dto.request;
 
-public class BuildingRequestDto { // dữ liệu nhập từ ngoài vào
+public class BuildingRequestDto { //
 	private String name;
 	private String staffId;
 	private String street;
 	private String districtCode;
 	private String ward;
-	private String floorArea; // diện tích sàn
-	private String numberOfBasements; // số thầng hầm
-	private String direction; // hướng
+	private String floorArea; // dien tich san
+	private String numberOfBasements; // số tầng hầm
+	private String direction; //
 	private String level;
-	private String areaFrom; // diện tích từ
+	private String areaFrom; // 
 	private String areaTo;
-	private String rentPriceFrom; // giá thuê từ
+	private String rentPriceFrom; // 
 	private String rentPriceTo;
-	private String[] buildingTypes = new String[] {}; // Lấy mảng String gồm các buildingtype id
+	private String[] buildingTypes = new String[] {}; // 
 
 	public String getName() {
 		return name;
