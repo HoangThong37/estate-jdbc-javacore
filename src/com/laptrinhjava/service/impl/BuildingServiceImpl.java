@@ -18,27 +18,9 @@ public class BuildingServiceImpl implements BuildingService {
 	BuildingRepository buildingRepository = new BuildingRepositoryImpl();
 
 	@Override
-	public List<BuildingResponse> buildingSearch(BuildingRequestDto dto) {
+	public List<BuildingResponse> buildingSearch(Map<String, Object> params, List<String> types) {
+		List<BuildingEntity> buildingEntities = buildingRepository.buildingSearch(params, types);
+		return null;
 		
-		return buildingRepository.buildingSearch(dto);
-		
-		
-	/*	List<BuildingResponse> buildingResponses = new ArrayList<>();
-		List<BuildingEntity> buildingEntities = buildingRepository.getBuildingSearch(dto);
-		
-		for (BuildingEntity item : buildingEntities) {
-			BuildingResponse buildingResponse = new BuildingResponse();
-			buildingResponse.setName(item.getName());
-			buildingResponse.setAddress(item.getStreet() + " , " + item.getWard() + " , " + item.getDistrictid());
-			buildingResponse.setRentprice(item.getRentprice());
-			buildingResponse.setFloorarea(item.getFloorarea());
-			buildingResponse.setServicefee(item.getServicefee());
-			buildingResponse.setBrokeragefee(item.getBrokeragefee());
-			buildingResponses.add(buildingResponse);
-			buildingResponses.add(buildingResponse);
-		}
-		return buildingResponses;
-	} 
-	*/
 }
 }
