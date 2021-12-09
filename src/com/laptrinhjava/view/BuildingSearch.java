@@ -29,8 +29,18 @@ public static void main(String[] args) {
 	}
 
 private static void initSearchParams(Map<String, Object> params, List<String> types) {
-	// TODO Auto-generated method stub
-	
+	params.put("name", "Nam Giao Building");
+	params.put("ward", "Phường 2");
+	params.put("street", "phan xích long");
+	params.put("district", "Q1");
+	params.put("numberofbasement", "2");
+	params.put("areaFrom", 100);
+	params.put("areaTo", 200);
+    types.add("tang-tret");
+     params.put("rentPriceFrom",12);
+     params.put("rentPriceTo",18);
+     params.put("staffId",2);
+     params.put("floorArea",500);
 }
 }
 
