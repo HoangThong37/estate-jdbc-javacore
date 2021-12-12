@@ -29,24 +29,24 @@ public class BuildingResponse { // java bean
 		return floorarea;
 	}
 
-	public void setFloorarea(String floorarea) {
-		this.floorarea = Integer.parseInt(floorarea);
+	public void setFloorarea(Integer floorarea) {
+		this.floorarea = floorarea;
 	}
 
 	public Integer getRentprice() {
 		return rentprice;
 	}
 
-	public void setRentprice(String rentprice) {
-		this.rentprice = Integer.parseInt(rentprice);
+	public void setRentprice(Integer rentprice) {
+		this.rentprice = rentprice;
 	}
 
 	public Integer getServicefee() {
 		return servicefee;
 	}
 
-	public void setServicefee(String servicefee) {
-		this.servicefee = Integer.parseInt(servicefee);
+	public void setServicefee(Integer servicefee) {
+		this.servicefee = servicefee;
 	}
 
 	public Integer getBrokeragefee() {
@@ -56,5 +56,38 @@ public class BuildingResponse { // java bean
 	public void setBrokeragefee(Integer brokeragefee) {
 		this.brokeragefee = brokeragefee;
 	}
+	
+
+//	public Integer getFloorarea() {
+//		return floorarea;
+//	}
+//
+//	public void setFloorarea(String floorarea) {
+//		this.floorarea = Integer.parseInt(floorarea);
+//	}
+//
+//	public Integer getRentprice() {
+//		return rentprice;
+//	}
+//
+//	public void setRentprice(String rentprice) {
+//		this.rentprice = Integer.parseInt(rentprice);
+//	}
+//
+//	public Integer getServicefee() {
+//		return servicefee;
+//	}
+//
+//	public void setServicefee(String servicefee) {
+//		this.servicefee = Integer.parseInt(servicefee);
+//	}
+//
+//	public Integer getBrokeragefee() {
+//		return brokeragefee;
+//	}
+//
+//	public void setBrokeragefee(Integer brokeragefee) {
+//		this.brokeragefee = brokeragefee;
+//	}
 
 }

@@ -1,5 +1,7 @@
 package com.laptrinhjava.repository;
 
-public interface DistrictRepository {
+import com.laptrinhjava.entity.DistrictEntity;
 
+public interface DistrictRepository {
+	DistrictEntity findByCode(Integer id);
 }

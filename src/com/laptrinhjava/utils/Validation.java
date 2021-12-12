@@ -1,4 +1,6 @@
-package com.laptrinhjava.utils;
+/* 
+ *package com.laptrinhjava.utils;
+ 
 
 public class Validation {
 	public static boolean isNumeric(String str) {
@@ -19,3 +21,5 @@ public class Validation {
 	}
 
 }
+
+*/

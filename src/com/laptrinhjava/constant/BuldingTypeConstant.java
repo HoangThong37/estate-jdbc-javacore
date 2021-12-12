@@ -1,6 +1,8 @@
 package com.laptrinhjava.constant;
 
 public class BuldingTypeConstant {
+	public static final String STRING_EMPTY = "";
+	
 	public static final String TANG_TRET_VALUE = "Tầng_trệt";
 	public static final String TANG_TRET_CODE = "tang-tret";
 	public static final String NGUYEN_CAN_VALUE = "Nguyên-căn";
