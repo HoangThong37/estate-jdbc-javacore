@@ -20,11 +20,11 @@ import com.laptrinhjava.utils.ValidateUtils;
 import com.mysql.cj.exceptions.RSAException;
 
 public class BuildingServiceImpl implements BuildingService {
-	BuildingRepository buildingRepository = new BuildingRepositoryImpl();
+	private BuildingRepository buildingRepository = new BuildingRepositoryImpl();
 
 	@Override
 	public List<BuildingResponse> buildingSearch(Map<String, Object> params, List<String> types) {
-		Map<String, Object> validParams = validateParams(params);	
+		Map<String, Object> validParams = validateParams(params);	// xem có dữ liệu truyền vào k
 		// convert entity -> reponse
 		List<BuildingEntity> buildingEntities = buildingRepository.buildingSearch(params, types);
 		List<BuildingResponse> buildingResponses = new ArrayList<>();

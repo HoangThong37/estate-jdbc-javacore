@@ -29,18 +29,18 @@ public class BuildingSearch {
 	}
 
 	private static void initSearchParams(Map<String, Object> params, List<String> types) {
-		params.put("name", "Building");
-//	params.put("ward", "Phường 2");
+//		params.put("name", "Tower")
+//params.put("ward", "2");
 //	params.put("street", "phan xích long");
 //	params.put("district", "Q1");
-//	params.put("numberofbasement", "2");
+	//params.put("numberofbasement", "2");
 //	params.put("areaFrom", 100);
 //	params.put("areaTo", 200);
-//    types.add("tang-tret");
-//     params.put("rentPriceFrom",12);
-//     params.put("rentPriceTo",18);
-//     params.put("staffId",2);
-//     params.put("floorArea",500);
+  // types.add("tang-tret");
+ /*   params.put("rentPriceFrom",16); //sai
+     params.put("rentPriceTo",18);*/
+//    params.put("staffId",2);
+     params.put("floorArea",500);
 	}
 }
 

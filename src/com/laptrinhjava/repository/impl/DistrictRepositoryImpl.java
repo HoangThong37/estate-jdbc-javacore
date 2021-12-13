@@ -29,6 +29,7 @@ public class DistrictRepositoryImpl implements DistrictRepository {
 					sql.append(" and id = ? ");
 					stmt = conn.prepareStatement(sql.toString());
 					stmt.setInt(1, id);
+					rs= stmt.executeQuery();
 					while (rs.next()) {
 						district.setName(rs.getString("name")); // set gtri name cho building
 					}

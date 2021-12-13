@@ -9,7 +9,8 @@ public class ValidateUtils {
 		if (isTrue) {
 			if (obj instanceof String) {
 				return true;
-			} else if (obj instanceof Integer) {
+			} 
+			else if (obj instanceof Integer) {
 				return 0 <= Integer.parseInt(obj.toString());
 			}
 		}
