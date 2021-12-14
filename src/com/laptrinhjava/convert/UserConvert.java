@@ -1,5 +1,15 @@
 package com.laptrinhjava.convert;
 
-public class UserConvert {
+import com.laptrinhjava.dto.response.UserResponse;
+import com.laptrinhjava.entity.UserEntity;
 
+public class UserConvert {
+    public static UserResponse Convert(UserEntity entity) {
+        UserResponse userResponse = new UserResponse();
+        userResponse.setId(entity.getId());
+        userResponse.setFullname(entity.getFullname());
+        userResponse.setUsername(entity.getUsername());
+
+        return userResponse;
+    }
 }

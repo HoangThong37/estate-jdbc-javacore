@@ -1,7 +1,7 @@
 package com.laptrinhjava.entity;
 
 public class UserEntity {
-	private String id;
+	private Integer id;
 	private String username;
 	private String password;
 	private String fullname;
@@ -9,11 +9,10 @@ public class UserEntity {
 	private String email;
 	private String status;
 
-	public String getId() {
+	public Integer getId() {
 		return id;
 	}
-
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
