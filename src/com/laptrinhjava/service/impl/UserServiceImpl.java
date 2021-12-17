@@ -1,7 +1,6 @@
 package com.laptrinhjava.service.impl;
 
 import com.laptrinhjava.convert.UserConvert;
-import com.laptrinhjava.dto.response.UserResponse;
 import com.laptrinhjava.entity.UserEntity;
 import com.laptrinhjava.repository.UserRepository;
 import com.laptrinhjava.repository.impl.UserRepositoryImpl;

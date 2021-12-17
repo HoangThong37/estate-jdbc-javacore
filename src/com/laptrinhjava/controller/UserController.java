@@ -1,6 +1,5 @@
 package com.laptrinhjava.controller;
 
-import com.laptrinhjava.dto.response.UserResponse;
 import com.laptrinhjava.service.UserService;
 import com.laptrinhjava.service.impl.UserServiceImpl;
 

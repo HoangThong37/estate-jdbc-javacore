@@ -1,6 +1,5 @@
 package com.laptrinhjava.convert;
 
-import com.laptrinhjava.dto.response.UserResponse;
 import com.laptrinhjava.entity.UserEntity;
 
 public class UserConvert {

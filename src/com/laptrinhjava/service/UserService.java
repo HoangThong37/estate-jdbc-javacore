@@ -1,7 +1,5 @@
 package com.laptrinhjava.service;
 
-import com.laptrinhjava.dto.response.UserResponse;
-
 import java.util.List;
 
 public interface UserService {

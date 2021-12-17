@@ -1,15 +1,16 @@
 package com.laptrinhjava.dto.response;
 
-public class UserResponse {
-    private  Integer id;
-    private  String username;
+public class StaffManagerModel {
+    private Long id;
+    private String username;
     private  String fullname;
+    private String check;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -27,5 +28,13 @@ public class UserResponse {
 
     public void setFullname(String fullname) {
         this.fullname = fullname;
+    }
+
+    public String getCheck() {
+        return check;
+    }
+
+    public void setCheck(String check) {
+        this.check = check;
     }
 }
