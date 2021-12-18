@@ -1,14 +1,13 @@
 package com.laptrinhjava.convert;
 
+import com.laptrinhjava.dto.response.StaffManagerModel;
 import com.laptrinhjava.entity.UserEntity;
+import com.laptrinhjava.repository.UserRepository;
 
 public class UserConvert {
-    public static UserResponse Convert(UserEntity entity) {
-        UserResponse userResponse = new UserResponse();
-        userResponse.setId(entity.getId());
-        userResponse.setFullname(entity.getFullname());
-        userResponse.setUsername(entity.getUsername());
-
-        return userResponse;
+    public static StaffManagerModel Convert(UserEntity entity) {
+        StaffManagerModel reponse  = new StaffManagerModel();
+        reponse.setFullname(entity.getFullname());
+        return reponse;
     }
 }

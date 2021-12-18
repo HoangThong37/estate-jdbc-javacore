@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface AssigmentBuildingService {
     List<AssignmentBuildingModel> AssignmentBuilding(AssignmentBuildingModel input);
-    List<StaffManagerModel> findStaffManageByBuildingId(Long id);
+    List<StaffManagerModel> findStaffManageByBuildingId(Long id); // tìm nhân viên quản lí = id tòa nhà
 }

@@ -2,6 +2,9 @@ package com.laptrinhjava.utils;
 
 import com.laptrinhjava.constant.BuldingTypeConstant;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ValidateUtils {
 	public static boolean isValid(Object obj) {
 		boolean isTrue = null != obj && !BuldingTypeConstant.STRING_EMPTY.equals(obj.toString());
@@ -15,5 +18,18 @@ public class ValidateUtils {
 			}
 		}
 		return false;
+	}
+
+	public static List<Long> isValid(List<Long> list) {
+		List<Long> result = new ArrayList<Long>();
+		if(!list.isEmpty()) {
+			for (Long item : list) {
+				if(item > 0) {
+					result.add(item);
+				}
+			}
+			return result;
+		}
+		return new ArrayList<>();
 	}
 }

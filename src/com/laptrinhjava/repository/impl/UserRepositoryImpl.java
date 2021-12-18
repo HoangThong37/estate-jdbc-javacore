@@ -18,7 +18,7 @@ public class UserRepositoryImpl implements UserRepository {
     private final String PASS = "123456";
 
     @Override
-    public List<UserEntity> findById(Integer id) {
+    public List<UserEntity> findById(Long id) {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -27,16 +27,17 @@ public class UserRepositoryImpl implements UserRepository {
             conn = DriverManager.getConnection(DB_URL, USER, PASS);
             if (conn != null) {
                 System.out.println(" Kết nối thành công ");
-                StringBuilder sql = new StringBuilder("select b.name, u.fullname from building as b" +
+                StringBuilder sql = new StringBuilder("select u.id,b.name, u.fullname from building as b" +
                         " inner join assignmentbuilding as ab on ab.buildingid = b.id\n" +
-                        " inner join user as u on u.id = ab.staffid");
+                        " inner join user as u on u.id = ab.staffid where 1=1 ");
                 if (id != null) {
                     sql.append(" and b.id = ? ");
                     stmt = conn.prepareStatement(sql.toString());
-                    stmt.setInt(1, id);
+                    stmt.setLong(1, id);
                     rs = stmt.executeQuery();
                     while (rs.next()) {   // hứng kết quả
                         UserEntity userEntity = new UserEntity();
+                        userEntity.setId(rs.getLong("u.id"));
                         userEntity.setFullname(rs.getString("u.fullname"));
                         userEntityList.add(userEntity);
                     }
@@ -65,6 +66,7 @@ public class UserRepositoryImpl implements UserRepository {
         return new ArrayList<>();
     }
 
+
     // findAll
     @Override
     public List<UserEntity> findAll() {
@@ -76,19 +78,17 @@ public class UserRepositoryImpl implements UserRepository {
             conn = DriverManager.getConnection(DB_URL, USER, PASS);
             if (conn != null) {
                 System.out.println(" Kết nối thành công ");
-                StringBuilder sql = new StringBuilder(" select * from user as u");
+                StringBuilder sql = new StringBuilder(" select * from user \n");
                 stmt = conn.prepareStatement(sql.toString());
                 rs = stmt.executeQuery();
                 while (rs.next()) {   // hứng kết quả
                     UserEntity userEntity = new UserEntity();
-                    userEntity.setId(rs.getInt("id"));
+                    userEntity.setId(rs.getLong("id"));
                     userEntity.setFullname(rs.getString("fullname"));
-                    userEntity.setUsername(rs.getString("username"));
                     userEntityList.add(userEntity);
                 }
+                return userEntityList;
             }
-            return userEntityList;
-
         } catch (SQLException | ArithmeticException e) {
             e.printStackTrace();
         } finally {
@@ -111,8 +111,9 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
 
-    @Override
-    public List<UserEntity> GiaoToaNha(Long[] id) {
-        return null;
-    }
+
+//    @Override
+//    public List<UserEntity> GiaoToaNha(Long[] id) {
+//        return null;
+//    }
 }
