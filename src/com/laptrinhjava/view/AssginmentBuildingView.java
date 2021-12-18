@@ -15,15 +15,18 @@ public class AssginmentBuildingView {
         AssignmentBuildingModel input = new AssignmentBuildingModel(buildingId, staffIds);
         AssignmentBuildingController assignmentBuildingController = new AssignmentBuildingController();
 
-        System.out.println("Danh sách nhân viên đang quản lí toaf nhà : ");
-        for (StaffManagerModel item : assignmentBuildingController.findStaffManagerByBuildingId(buildingId)) {
-            System.out.println(" name : " + item.getFullname() + " check : " + item.getCheck());
+        System.out.println("Danh sách nhân viên đang quản lí toà nhà : ");
+        List<StaffManagerModel> beforeStaffs = assignmentBuildingController.findStaffManagerByBuildingId(buildingId);
+        for (StaffManagerModel item : beforeStaffs) {
+            System.out.println("name :" +item.getFullname() +" - check " +item.getCheck());
         }
         assignmentBuildingController.assignBuildingToStaff(input);
 
+
         System.out.println("Nhân viên sau khi cập nhật : ");
-        for (StaffManagerModel item : assignmentBuildingController.findStaffManagerByBuildingId(buildingId)) {
-            System.out.println(" name : " + item.getFullname() + " check : " + item.getCheck());
+        List<StaffManagerModel> afterStaffs = assignmentBuildingController.findStaffManagerByBuildingId(buildingId);
+        for (StaffManagerModel item : afterStaffs) {
+            System.out.println("name :" +item.getFullname() +" - check " +item.getCheck());
         }
 
 //        System.out.println("BEFORE ASSIGNING");
