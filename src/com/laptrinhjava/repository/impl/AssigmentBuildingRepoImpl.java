@@ -17,10 +17,10 @@ public class AssigmentBuildingRepoImpl implements AssigmentBuildingRepo {
         ResultSet rs = null;
         try {
             conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            conn.setAutoCommit(false);
             if (!newstaff.isEmpty()) {
                 StringBuilder sqlAddNew = new StringBuilder();
-                conn.setAutoCommit(false); // tắt chế độ auto-commit
-
+//                conn.setAutoCommit(false); // tắt chế độ auto-commit
                 sqlAddNew.append("\n INSERT INTO assignmentbuilding(staffid, buildingid)").append(" values ");
                 for (int i = 0; i < newstaff.size(); i++) {
                     sqlAddNew.append("(" + newstaff.get(i) + ", " + buildingid + ")");
@@ -30,13 +30,11 @@ public class AssigmentBuildingRepoImpl implements AssigmentBuildingRepo {
                 }
                 stmt = conn.createStatement();
                 rs = stmt.executeQuery(sqlAddNew.toString());
-                conn.commit();
             }
 // XÓA
             if (!oldstaff.isEmpty()) {
                 StringBuilder sqlRemove = new StringBuilder();
-                conn.setAutoCommit(false); // tắt chế độ auto-commit
-
+//                conn.setAutoCommit(false); // tắt chế độ auto-commit
                 sqlRemove.append("\n delete from assignmentbuilding where buildingid = ").append(buildingid)
                         .append(" and staffid IN(");
                 for (int i = 0; i < oldstaff.size(); i++) {
@@ -49,8 +47,9 @@ public class AssigmentBuildingRepoImpl implements AssigmentBuildingRepo {
                 }
                 stmt = conn.createStatement();
                 rs = stmt.executeQuery(sqlRemove.toString());
-                conn.commit();
             }
+            conn.commit();
+
         } catch (SQLException e) {
             e.getMessage();
             try {
@@ -59,6 +58,20 @@ public class AssigmentBuildingRepoImpl implements AssigmentBuildingRepo {
                 ex.printStackTrace();
             }
         } finally {
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+                if (stmt != null) {
+                    stmt.close();
+                }
+                if (rs != null) {
+                    rs.close();
+                }
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
 
         }
 
