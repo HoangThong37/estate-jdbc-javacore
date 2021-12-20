@@ -4,15 +4,19 @@ import com.laptrinhjava.controller.AssignmentBuildingController;
 import com.laptrinhjava.dto.response.AssignmentBuildingModel;
 import com.laptrinhjava.dto.response.StaffManagerModel;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class AssginmentBuildingView {
     public static void main(String[] args) {
-        Long buildingId = 1L;
-        List<Long> staffIds = Arrays.asList(1L, 3L);
+        Long buildingId = 4L;
+        List<Long> staffIds = new ArrayList<>();
+        staffIds.add(2L);
+        staffIds.add(4L);
 
         AssignmentBuildingModel input = new AssignmentBuildingModel(buildingId, staffIds);
+
         AssignmentBuildingController assignmentBuildingController = new AssignmentBuildingController();
 
         System.out.println("Danh sách nhân viên đang quản lí toà nhà : ");
