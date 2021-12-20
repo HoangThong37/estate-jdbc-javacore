@@ -21,7 +21,7 @@ public class AssigmentBuildingServiceImpl implements AssigmentBuildingService {
     @Override
     public List<AssignmentBuildingModel> AssignmentBuilding(AssignmentBuildingModel input) {
         List<UserEntity> currentStaffsCovert = userRepository.findById(input.getBuildingIds());
-        List<Long> inputStaffs = ValidateUtils.isValid(input.getStaffIds()); // nhập vào nhân viên
+        List<Long> inputStaffs = check(input);
         List<Long> oldStaffs = new ArrayList<>(); // list nv cũ
         List<Long> newStaffs = new ArrayList<>();  //  list nv mới
         List<Long> currentStaffs = new ArrayList<>(); // list nv hiện tại
@@ -54,6 +54,19 @@ public class AssigmentBuildingServiceImpl implements AssigmentBuildingService {
 
         assigmentBuilding.ASS(input.getBuildingIds(), newStaffs, oldStaffs); //
         return new ArrayList<>();
+    }
+
+    private List<Long> check(AssignmentBuildingModel input) {
+        List<UserEntity> userEntityList = userRepository.findAll();
+        List<Long> userAll = new ArrayList<>();
+        List<Long> userInput = new ArrayList<>();
+        for (UserEntity userEntity : userEntityList) {
+            userAll.add(userEntity.getId());
+        }
+        for (Long item : input.getStaffIds()) {
+            userInput.add(item);
+        }
+        return userInput;
     }
 
     @Override
