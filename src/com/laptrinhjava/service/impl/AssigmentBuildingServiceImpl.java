@@ -1,0 +1,84 @@
+package com.laptrinhjava.service.impl;
+
+import com.laptrinhjava.convert.UserConvert;
+import com.laptrinhjava.dto.response.AssignmentBuildingModel;
+import com.laptrinhjava.dto.response.StaffManagerModel;
+import com.laptrinhjava.entity.UserEntity;
+import com.laptrinhjava.repository.AssigmentBuildingRepo;
+import com.laptrinhjava.repository.UserRepository;
+import com.laptrinhjava.repository.impl.AssigmentBuildingRepoImpl;
+import com.laptrinhjava.repository.impl.UserRepositoryImpl;
+import com.laptrinhjava.service.AssigmentBuildingService;
+import com.laptrinhjava.utils.ValidateUtils;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class AssigmentBuildingServiceImpl implements AssigmentBuildingService {
+    private UserRepository userRepository = new UserRepositoryImpl();
+    private AssigmentBuildingRepo assigmentBuilding = new AssigmentBuildingRepoImpl();
+
+    @Override
+    public void AssignmentBuilding(AssignmentBuildingModel input) {
+        //List<UserEntity> currentStaffsCovert = userRepository.findById(input.getBuildingIds());
+//        List<Long> inputStaffs = check(input);
+//        List<Long> oldStaffs = new ArrayList<>(); // list nv cũ
+//        List<Long> newStaffs = new ArrayList<>();  //  list nv mới
+//        List<Long> currentStaffs = new ArrayList<>(); // list nv hiện tại
+        Long buildingId = input.getBuildingIds();
+        List<Long> inputStaffs = input.getStaffIds();
+        List<UserEntity> currentStaffs = userRepository.findById(buildingId);
+        List<Long> oldStaffs = new ArrayList<>(); // list nv cũ
+        List<Long> newStaffs = new ArrayList<>();  //  list nv mới
+
+        if (inputStaffs.isEmpty()) {
+            if (currentStaffs.isEmpty()) {
+                return;
+            }
+            for (UserEntity item : currentStaffs) {
+                oldStaffs.add(item.getId());
+            }
+//            else {
+//                oldStaffs.addAll();
+//            }
+        } else {
+            if (!currentStaffs.isEmpty()) {
+                for (UserEntity item : currentStaffs) {
+                    Long userId = item.getId();
+                    if (!(inputStaffs.contains(userId))) {
+                        oldStaffs.add(userId);
+                        //currentStaffs.get(i)
+                    } else {
+                        inputStaffs.remove(userId);
+                    }
+                }
+            }
+            if (inputStaffs.isEmpty()) {
+                return;
+            } else {
+                newStaffs.addAll(inputStaffs);
+            }
+        }
+
+    }
+
+    @Override
+    public List<StaffManagerModel> findStaffManageByBuildingId(Long id) { // list Nhân viên Quản lý theo Id Tòa nhà
+        List<UserEntity> users = userRepository.findAll(); // find all
+        List<UserEntity> assignmentStaffs = userRepository.findById(id); // tìm theo id
+
+        List<StaffManagerModel> rs = new ArrayList<>();
+        List<Long> list = new ArrayList<>();
+        for (UserEntity entity : assignmentStaffs) {
+            list.add(entity.getId());
+        }
+        for (UserEntity item : users) {
+            StaffManagerModel staffManagerModel = UserConvert.Convert(item);
+            if (list.contains(item.getId())) {
+                staffManagerModel.setCheck("Checked"); //
+            }
+            rs.add(staffManagerModel);
+        }
+        return rs;
+    }
+}
